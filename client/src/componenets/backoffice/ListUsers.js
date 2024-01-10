@@ -6,6 +6,10 @@ import Footer from "./Footer";
 import { Helmet } from "react-helmet";
 import './listUsers.css'
 function ListUsers() {
+  const [username, setUserName] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [errorMessages, setErrorMessages] = useState({});
   const [users, setUsers] = useState([]);
   const [editingUser, setEditingUser] = useState(null);
   const [formData, setFormData] = useState({
@@ -28,6 +32,9 @@ function ListUsers() {
         console.error("Error fetching user data:", error);
       });
   }, []);
+
+
+  // edit functions start
   const handleEditClick = (user) => {
     setEditingUser(user);
     // Update the form data with the selected user's details
@@ -41,25 +48,6 @@ function ListUsers() {
 
     });
   };
-  const handleDeleteClick = (userId) => {
-    // Make an API call to delete the user
-    axios
-      .delete(`http://localhost:5000/api/users/users/${userId}`)
-      .then((response) => {
-        // Handle successful deletion
-        console.log(response.data.message);
-        // Update the local state to reflect the deletion
-        const updatedUsers = users.filter((user) => user._id !== userId);
-        setUsers(updatedUsers);
-      })
-      .catch((error) => {
-        console.error("Error deleting user:", error);
-      });
-  };
-  const handleDeleteSubmit =() =>{
-
-  };
-
   const handleEditFormSubmit = (e) => {
     e.preventDefault();
 
@@ -87,6 +75,80 @@ function ListUsers() {
         console.error("Error updating user:", error);
       });
   };
+  // end edit func
+
+
+  const handleDeleteClick = (userId) => {
+    
+  };
+  const handleDeleteSubmit =(userId) =>{
+// Make an API call to delete the user
+axios
+.delete(`http://localhost:5000/api/users/users/${userId}`)
+.then((response) => {
+  // Handle successful deletion
+  console.log(response.data.message);
+  // Update the local state to reflect the deletion
+  const updatedUsers = users.filter((user) => user._id !== userId);
+  setUsers(updatedUsers);
+})
+.catch((error) => {
+  console.error("Error deleting user:", error);
+});
+  };
+// registration 
+   
+const handleRegister = async () => {
+  if(validateRegistration()){
+  try {
+    const response = await axios.post('http://localhost:5000/api/users/register', {
+       // Replace with actual user input or dynamic data
+      username: username,
+      email: email,
+      password: password
+    });
+
+    // Assuming your backend sends back tokens in the response
+    const { accessToken, refreshToken } = response.data;
+
+    // Store the tokens securely (e.g., in localStorage or secure cookies)
+    localStorage.setItem('accessToken', accessToken);
+    localStorage.setItem('refreshToken', refreshToken);
+
+    // Handle successful registration response here (e.g., redirect user to a protected route)
+    console.log('Registration successful:', response.data);
+  } catch (error) {
+    // Handle error here
+    console.error('Error registering:', error);
+  }}
+
+};
+const validateRegistration = () => {
+  let errors = {};
+
+  if (!username.trim()) {
+    errors.username = 'Username is required';
+  }
+
+  if (!email.trim()) {
+    errors.email = 'Email is required';
+  } else if (!/\S+@\S+\.\S+/.test(email)) {
+    errors.email = 'Invalid email address';
+  }
+
+  if (!password.trim()) {
+    errors.password = 'Password is required';
+  } else if (password.length < 8) {
+    errors.password = 'Password must be at least 8 characters long';
+  } else if (!/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()_\-+={}[\]\\|:;'<>,.?/])[a-zA-Z\d!@#$%^&*()_\-+={}[\]\\|:;'<>,.?/]{8,}$/.test(password)) {
+    errors.password = 'Password must contain at least one uppercase letter, one lowercase letter, one special character, and one number';
+  }
+  
+
+  setErrorMessages(errors);
+
+  return Object.keys(errors).length === 0;
+};
 
   return (<>
     <Helmet>
@@ -210,10 +272,10 @@ function ListUsers() {
       <td>{user.loginCount}</td>
       <td>{user.subscriptionType}</td>
       <td>
-        <a href="#editEmployeeModal" className="edit" data-toggle="modal"onClick={() => handleEditClick(user)}>
+        <a href="#editEmployeeModal" className="edit" data-toggle="modal"onClick={() => handleEditClick(user)} >
           <i className="material-icons" data-toggle="tooltip" title="Edit"></i>
         </a>
-        <a href="#deleteEmployeeModal" className="delete" data-toggle="modal" >
+        <a href="#deleteEmployeeModal" className="delete" data-toggle="modal" onClick={() => handleDeleteClick(user)} >
           <i className="material-icons" data-toggle="tooltip" title="Delete"></i>
         </a>
       </td>
@@ -236,7 +298,7 @@ function ListUsers() {
       </div>
     </div>
   </div>
-  {/* Edit Modal HTML */}
+  {/* add Modal HTML */}
   <div id="addEmployeeModal" className="modal custom-modal fade">
     <div className="modal-dialog">
       <div className="modal-content">
@@ -248,24 +310,24 @@ function ListUsers() {
           <div className="modal-body">					
             <div className="form-group">
               <label>Name</label>
-              <input type="text" className="form-control" required />
+              <input type="text" className="form-control" required onChange={(e) => setUserName(e.target.value)}/>
+              {errorMessages.username && <p className='error'>{errorMessages.username}</p>}
             </div>
             <div className="form-group">
               <label>Email</label>
-              <input type="email" className="form-control" required />
+              <input type="email" className="form-control" required onChange={(e) => setEmail(e.target.value)}/>
+              {errorMessages.email && <p className='error'>{errorMessages.email}</p>}
             </div>
+          
             <div className="form-group">
-              <label>Address</label>
-              <textarea className="form-control" required defaultValue={""} />
-            </div>
-            <div className="form-group">
-              <label>Phone</label>
-              <input type="text" className="form-control" required />
+              <label>Password</label>
+              <input type="password" className="form-control" required onChange={(e) => setPassword(e.target.value)}/>
+              {errorMessages.password && <p className='error'>{errorMessages.password}</p>}
             </div>					
           </div>
           <div className="modal-footer">
             <input type="button" className="btn btn-default" data-dismiss="modal" defaultValue="Cancel" />
-            <input type="submit" className="btn btn-success" defaultValue="Add" />
+            <input type="submit" className="btn btn-success" defaultValue="Add" onClick={handleRegister}/>
           </div>
         </form>
       </div>

@@ -1,0 +1,198 @@
+/* Styles pour la page */
+body {
+  font-family: Arial, sans-serif;
+  font-size: 16px;
+  background-color: #F9F2ED;
+  margin: 0;
+  padding: 0;
+  background-color: white;
+}
+
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+h1 {
+  font-size: 32px;
+  font-weight: bold;
+  margin: 0 0 20px;
+}
+
+form {
+  border: 1px solid #ccc;
+  padding: 20px;
+}
+
+label {
+  display: block;
+  margin-bottom: 10px;
+}
+
+input[type="text"],
+input[type="email"],
+textarea {
+  width: 97%;
+  padding: 1.5%;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  margin-bottom: 20px;
+}
+
+.file-input-wrapper {
+  position: relative;
+}
+
+.file-input-wrapper input[type="file"] {
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin: 0;
+  padding: 2%;
+  font-size: 100px;
+  cursor: pointer;
+  opacity: 0;
+  filter: alpha(opacity=0);
+}
+
+.file-input-wrapper .btn {
+  background-color: #f00;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 4px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.file-input-wrapper .btn:hover {
+  background-color: #333;
+}
+
+button {
+  background-color: #f00;
+  color: #fff;
+  border: none;
+  margin-top: 5%;
+  margin-left: 45%;
+  padding: 10px 20px;
+  border-radius: 4px;
+  font-size: 16px;
+  cursor: pointer;
+  text-align: center;
+  display: inline-block;
+}
+
+button:hover {
+  background-color: #f00;
+}
+.presentation {
+  margin: 30px;
+  padding: 20px;
+  background-color: #f2f2f2;
+  text-align: justify;
+  line-height: 1.5;
+  font-size: 16px;
+  color: #444444;
+}
+p{
+  font-size: 13px;
+}
+
+
+
+
+/*Menu de navigation start*/
+.menu{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px 80px;
+    background-color: white;
+    color: black;
+   /*box-shadow: 0 5px 15px #dcdcdc;*/
+    z-index:999 ;
+    position: sticky;
+    top: 0;
+    left: 0;
+    padding: 10px;
+    height: 50px;
+    padding: 10px 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+
+}
+
+#mobile{
+    display: none;
+    align-items: center;
+}
+#mobile i{
+    color: #333;
+    font-size: 24px;
+    padding-left: 20px;
+}
+#close{
+    display: none;
+}
+.menu img {
+    height: 70px;
+}
+
+#navbar{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: sticky;
+}
+
+#navbar li {
+    list-style: none;
+    padding: 0 20px;
+    position: relative;
+}
+.menu li:last-child {
+    margin-right: 0;
+}
+#navbar li a{
+    text-decoration: none;
+    font-size: 13px;
+    cursor: pointer;
+    color: black;
+    transition: 0.3 ease;
+
+}
+
+#navbar li a:hover,#navbar li a.active{
+    color: #CBA361;
+}
+#navbar li a.active::after,
+#navbar li a:hover::after{
+  content: '';
+  position: absolute;
+  top: 120%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: #CBA361;
+  animation: circleEffect 0.5s ease-in-out;
+}
+/*Menu de navigation end*/
+
+/* titre */
+@import url(https://fonts.googleapis.com/css?family=Raleway:400,,800,900);
+
+.title-dashboard{
+  color: transparent;
+  font-size:50px;
+  background: url("https://phandroid.s3.amazonaws.com/wp-content/uploads/2014/05/rainbow-nebula.jpg") repeat;
+  background-position: 30% 50%;
+  -webkit-background-clip: text;
+  text-align:center;
+  line-height:90px;
+  padding-top: 50px;
+}
+
+

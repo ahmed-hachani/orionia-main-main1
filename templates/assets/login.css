@@ -1,0 +1,132 @@
+body {
+  background-color: #F9F2ED;
+  background-image: url("img/ORION-background.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.card {
+  max-width: 500px;
+  margin: 0 auto;
+  margin-top: 35%;
+  background-color: rgba(0, 0, 0, 0.7);
+}
+
+p {
+  font-size: 12px;
+  color: #666;
+  margin: 0;
+}
+
+#logo-connexion{
+    width: 100px;
+    height: 60px;
+}
+
+
+.social-links {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: white;
+  padding: 7px;
+  z-index: 9999; /* s'assurer que le footer est au-dessus de tout le reste */
+}
+
+.social-links a {
+  display: inline-block;
+  margin: 0 10px;
+  border-radius: 50%;
+  overflow: hidden;
+  transition: all 0.3s ease-in-out;
+}
+
+.social-links a:hover {
+  transform: scale(1.1);
+}
+
+.social-links img {
+  display: block;
+  width: 20px;
+  height: 20px;
+}
+
+.social-links span {
+  margin-left: 10px;
+  font-size: 12px;
+}
+
+@media (min-width: 768px) {
+  .social-links a {
+    margin: 0 15px;
+  }
+  .social-links img {
+    width: 30px;
+    height: 30px;
+  }
+}
+
+.title{
+  color: white;
+}
+
+.form-label{
+  color: white;
+}
+
+.btn-primary{
+  background-color: #CBA361;
+  border: 0px;
+}
+
+#logo {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 200px;
+}
+
+#forgot-password{
+  position: absolute;
+  right: 5%;
+  color: white;
+  font-size: 14px;
+}
+#forgot-password:hover{
+  color: #CBA361;
+  text-decoration : underline;
+}
+
+#btn-connexion{
+  margin-top: 10%;
+}
+
+.form-style{
+  margin-top: 7%;
+}
+
+.get-started-button {
+  position: fixed;
+  top: 40px;
+  right: 20px;
+  padding: 10px 20px;
+  background-color: #CBA361;
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+  border-radius: 4px;
+}
+
+.get-started-button:hover {
+  background-color: #0d6efd;
+}
+
+a:hover{
+  color: white;
+}
+
+

@@ -1,0 +1,46 @@
+.social-links {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+    padding: 7px;
+    z-index: 9999; /* s'assurer que le footer est au-dessus de tout le reste */
+  }
+  
+  .social-links a {
+    display: inline-block;
+    margin: 0 10px;
+    border-radius: 50%;
+    overflow: hidden;
+    transition: all 0.3s ease-in-out;
+  }
+  
+  .social-links a:hover {
+    transform: scale(1.1);
+  }
+  
+  .social-links img {
+    display: block;
+    width: 20px;
+    height: 20px;
+  }
+  
+  .social-links span {
+    margin-left: 10px;
+    font-size: 12px;
+  }
+  
+  @media (min-width: 768px) {
+    .social-links a {
+      margin: 0 15px;
+    }
+    .social-links img {
+      width: 30px;
+      height: 30px;
+    }
+  }
+  

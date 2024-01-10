@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Centre Support - Orion</title>
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous"/>
+  <link rel="stylesheet" href="{{ url_for('assets', path='problem.css') }}">
+  <link rel="icon" type="image/x-icon" href="https://orion-horizons.com/onewebmedia/LOGO_ORION_-2.png">
+</head>
+<body>
+    <!--Menu-->
+    <nav class="menu">
+        <img src="{{ url_for('assets', path='img/LOGO_ORION_-2.png') }}" alt=" Logo" class="text-center" >
+        <div>
+            <ul id="navbar">
+                <li><a href="/dashboard">ATELIER</a></li>
+                <li><a href="/monprofil">PROFIL</a></li>
+                <li><a href="#">SUPPORT</a></li>
+                <li><a href="/login">DECONNEXION</a></li>
+                <a href="#" id="close"><i class="fas fa-times"></i></a>
+            </ul>
+        </div>
+
+        <div id="mobile">
+            <i class="fas fa-bars" id="bar"></i>
+        </div>
+    </nav>
+  <div class="container">
+    <h1>Centre Support </h1>
+    <div class="presentation">
+      <p>Dans le but de veiller à la satisfaction de nos clients, nous avons mis en place une page dédiée à la signalisation des problèmes pour vous. Nous comprenons qu'il est possible que des problèmes surviennent, et nous sommes toujours prêts à collaborer avec vous pour résoudre ces problèmes et vous offrir le meilleur service possible.</p>
+      
+     
+      <p>Nous sommes fiers de proposer une solution novatrice en utilisant l'intelligence artificielle pour générer des photos de qualité professionnelle. Cependant, nous sommes conscients que des erreurs peuvent se produire. C'est pourquoi nous avons mis en place une page dédiée où vous pouvez signaler rapidement et facilement tout problème que vous pourriez rencontrer. Nous travaillerons en étroite collaboration avec vous pour garantir que tous les problèmes sont résolus rapidement et efficacement. Notre objectif est de vous offrir une expérience optimale en traitant rapidement les problèmes qui pourraient survenir.</p>
+    </div>
+
+    <div>
+      <div class="form-group">
+        <label for="probleme">Problème :</label>
+        <textarea id="probleme" name="probleme" required></textarea>
+      </div>
+      <div class="form-group">
+        <label for="fichier">Ajouter un fichier (jusqu'à 10 Mo) :</label>
+        <input type="file" id="fichier" name="fichier[]" accept=".pdf,.doc,.docx,.jpg,.jpeg,.png" multiple>
+
+      </div>
+      <button type="submit" id="report-btn" onclick="sendIMG()">Envoyer</button>
+    </div>
+  </div>
+
+  <script type="text/javascript">
+    const bar = document.getElementById('bar');
+    const close = document.getElementById('close');
+    const nav = document.getElementById('navbar');
+
+
+    if(bar){
+        bar.addEventListener('click', () => {
+            nav.classList.add('active');
+        })
+    }
+    if(close){
+        close.addEventListener('click', () => {
+            nav.classList.remove('active');
+        })
+    }
+    function sendIMG(){
+      // Récupérer la référence de l'élément textarea et de l'élément input de type file
+      const textarea = document.getElementById("probleme");
+      const fileInput = document.getElementById("fichier");
+
+      // Ajouter un gestionnaire d'événement pour le formulaire de soumission
+      const form = document.getElementById("report-btn");
+    
+      // Créer un objet FormData pour stocker les données à envoyer
+      const formData = new FormData();
+      formData.append("text", textarea.value); // Ajouter le texte
+      for (const file of fileInput.files) {
+        formData.append("files", file); // Ajouter chaque fichier individuellement
+      }
+
+      // Envoyer la requête POST
+      fetch("/report-problem", {
+        method: "POST",
+        body: formData
+      })
+      .then(response => {
+        if (response.ok) {
+          console.log("Données envoyées avec succès !");
+          document.getElementById("probleme").value=''
+          document.getElementById("fichier").value=''
+          alert("Votre problème à était communiquer à notre équipe !")
+        } else {
+          console.error("Erreur lors de l'envoi des données !");
+        }
+      })
+      .catch(error => {
+        console.error("Erreur lors de l'envoi des données :", error);
+      });
+
+    }
+
+  </script>
+</body>
+</html>

@@ -1,0 +1,303 @@
+body {
+      background-color: white;
+      font-family: Arial, sans-serif;
+      margin: 0px;
+    }
+
+    h1 {
+      text-align: center;
+      font-size: 32px;
+      margin-bottom: 50px;
+    }
+    .plan-wrapper {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: stretch;
+      margin: 5%;
+    }
+    .plan {
+      background-color: #dcdcdc;
+      padding: 20px;
+      border-radius: 10px;
+      margin: 0 15px;
+      flex-basis: 300px;
+      box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.5);
+    }
+    .plan h2 {
+      font-size: 24px;
+      margin-top: 0;
+      margin-bottom: 20px;
+      position: relative;
+    }
+    .plan h2:after {
+      background-color: #FFD700;
+      color: #000;
+      font-size: 14px;
+      padding: 5px;
+      border-radius: 5px;
+      position: absolute;
+      top: -20px;
+      right: -10px;
+    }
+    #popular h2:after {
+      content: "Le plus populaire";
+      background-color: #CDA65D;
+      color: #000;
+      font-size: 14px;
+      padding: 5px;
+      border-radius: 5px;
+      position: absolute;
+      top: -20px;
+      right: -10px;
+    }
+
+    .plan p {
+      margin-top: 50px;
+      margin-bottom: 10px;
+      height: 70px;
+    }
+    .features {
+      margin-top: 50px;
+      position: absolute; /* position absolue pour que le div ne soit pas affecté par le flux du document */
+      left: 50%; /* position horizontale à 50% de la fenêtre */
+      transform: translate(-50%, -50%); /* déplace le div vers le haut et la gauche de moitié de sa propre taille */
+
+    }
+    .features ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+    .features li:before {
+      content: "\2022";
+      color: #FFD700;
+      display: inline-block;
+      width: 1em;
+      margin-left: -1em;
+    }
+
+
+    /*Menu de navigation */
+    .menu {
+        background-color: #dcdcdc;
+        padding: 10px;
+        height: 50px;
+    }
+
+    .menu img {
+        float: left;
+        width: 70 px;
+        height: 70px;
+    }
+
+    .menu ul {
+        list-style: none;
+        margin: 20px;
+        padding: 0;
+        float: right;
+    }
+
+    .menu li {
+        display: inline-block;
+        margin-right: 10px;
+    }
+
+    .menu li:last-child {
+        margin-right: 0;
+    }
+
+    .menu a {
+        color: #333;
+        text-decoration: none;
+        padding: 5px 10px;
+    }
+
+    .menu a:hover {
+        background-color: #333;
+        color: #fff;
+    }
+    .button {
+      background-color: #CBA361;
+      border: none;
+      border-radius: 5px;
+      color: #333333;
+      cursor: pointer;
+      font-size: 16px;
+      margin-top: 20px;
+      padding: 10px;
+      width: 100%;
+    }
+    /*Animation*/
+
+    .card {
+      position: relative;
+      width: 300px;
+      height: 300px;
+      color: #fff;
+      background: transparent;
+      overflow: hidden;
+      border-top: 1px solid rgba(255, 49, 49, 0.5);
+      border-right: 1px solid rgba(0, 255, 255, 0.5);
+      border-bottom: 1px solid rgba(57, 255, 20, 0.5);
+      border-left: 1px solid rgba(255, 255, 113, 0.5);
+      font-family: sans-serif;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-around;
+      align-items: center;
+      padding: 1em;
+    }
+
+      p {
+        font-size: 0.95rem;
+        text-align: center;
+      }
+
+      span {
+        position: absolute;
+        border-radius: 100vmax;
+      }
+
+      .top {
+        top: 0;
+        left: 0;
+        width: 0;
+        height: 5px;
+        background: linear-gradient(
+          90deg,
+          transparent 50%,
+          rgba(255, 49, 49, 0.5),
+          rgb(255, 49, 49)
+        );
+      }
+
+      .bottom {
+        right: 0;
+        bottom: 0;
+        height: 5px;
+        background: linear-gradient(
+          90deg,
+          rgb(57, 255, 20),
+          rgba(57, 255, 20, 0.5),
+          transparent 50%
+        );
+      }
+
+      .right {
+        top: 0;
+        right: 0;
+        width: 5px;
+        height: 0;
+        background: linear-gradient(
+          180deg,
+          transparent 30%,
+          rgba(0, 255, 255, 0.5),
+          rgb(0, 255, 255)
+        );
+      }
+
+      .left {
+        left: 0;
+        bottom: 0;
+        width: 5px;
+        height: 0;
+        background: linear-gradient(
+          180deg,
+          rgb(255, 255, 113),
+          rgba(255, 255, 113, 0.5),
+          transparent 70%
+        );
+      }
+
+      .top {
+        animation: animateTop 3s ease-in-out infinite;
+      }
+
+      .bottom {
+        animation: animateBottom 3s ease-in-out infinite;
+      }
+
+      .right {
+        animation: animateRight 3s linear infinite;
+      }
+
+      .left {
+        animation: animateLeft 3s ease-in-out infinite;
+      }
+
+      @keyframes animateTop {
+        25% {
+          width: 100%;
+          opacity: 1;
+        }
+
+        30%,
+        100% {
+          opacity: 0;
+        }
+      }
+
+      @keyframes animateBottom {
+        0%,
+        50% {
+          opacity: 0;
+          width: 0;
+        }
+
+        75% {
+          opacity: 1;
+          width: 100%;
+        }
+
+        76%,
+        100% {
+          opacity: 0;
+        }
+      }
+
+      @keyframes animateRight {
+        0%,
+        25% {
+          opacity: 0;
+          height: 0;
+        }
+
+        50% {
+          opacity: 1;
+          height: 100%;
+        }
+
+        55%,
+        100% {
+          height: 100%;
+          opacity: 0;
+        }
+      }
+
+      @keyframes animateLeft {
+        0%,
+        75% {
+          opacity: 0;
+          bottom: 0;
+          height: 0;
+        }
+
+        100% {
+          opacity: 1;
+          height: 100%;
+        }
+      }
+
+      .title-dashboard{
+        font-weight: 80;
+        color: transparent;
+        font-weight: bold;
+        font-size:50px;
+        background: url("https://phandroid.s3.amazonaws.com/wp-content/uploads/2014/05/rainbow-nebula.jpg") repeat;
+        background-position: 30% 50%;
+        -webkit-background-clip: text;
+        text-align:center;
+        line-height:90px;
+        padding-top: 50px;
+      }

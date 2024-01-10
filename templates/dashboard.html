@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Atelier - Orion</title>
+    <link rel="stylesheet" href="{{ url_for('assets', path='dashboard.css') }}">
+
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous"/>
+    <link rel="icon" type="image/x-icon" href="{{ url_for('assets', path='img/LOGO_ORION_-2.png') }}">
+</head>
+
+<body>
+    <!--Menu-->
+    <nav class="menu">
+        <img src="{{ url_for('assets', path='img/LOGO_ORION_-2.png') }}" alt=" Logo" class="text-center" >
+        <div>
+            <ul id="navbar">
+                <li><a href="#">ATELIER</a></li>
+                <li><a href="/monprofil">PROFIL</a></li>
+                <li><a href="/support">SUPPORT</a></li>
+                <li><a href="/login">DECONNEXION</a></li>
+                <a href="#" id="close"><i class="fas fa-times"></i></a>
+            </ul>
+        </div>
+
+        <div id="mobile">
+            <i class="fas fa-bars" id="bar"></i>
+        </div>
+    </nav>
+
+    <!--Title-->
+    <div class="title-dashboard"><img id="title-orionia" src="{{ url_for('assets', path='img/title-orionia.png') }}" alt=" Logo" class="text-center" ></div>
+    
+    <div id="container">
+    <!--LEFT SIDE-->
+    <div id="before">
+        <span class="handwriting-font">Votre intérieur actuel </span>
+        <!-- First Element-->
+        <div id="element-image-drop">
+            <p id="text-of-image-container">Cliquer ou glisser-déposer des photos ici</p>
+
+            <input type="file" id="upload" onchange="previewImage(event)">
+            <img id="preview">
+        </div>
+    </div>
+
+    <!-- Right Side -->
+    <div id="after">
+        <span class="handwriting-font">Résultat </span>
+        <div id="element-image-drop-2">
+            <a id="download" href="" download>
+                <img id="generated" style="display: none;">
+            </a>
+            <div id="loader"></div>
+        </div>
+        <div id="divButtonLike">
+            Notez cette photo 
+            <button id="likeButton" onclick="sendAvisPos()"><i class="fa fa-thumbs-up"></i></button>
+            <button id="dislikeButton" onclick="sendAvisNeg()"><i class="fa fa-thumbs-down"></i></button>
+        </div>
+    </div>
+    </div>
+    
+    <div id="room-type-div">
+        <span id="room-type-span">Type de pièce <span class="asterisk">*</span></span>
+
+        <div class="image-grid-type" id="image-grid-typeID">
+            <div class="image-room-div">
+                <img class="room-type-img" src="{{ url_for('assets', path='img/living-room.jpeg') }}" alt="Image 1"><br>
+                <span>Salon</span>
+            </div>
+            <div class="image-room-div">
+                <img class="room-type-img" src="{{ url_for('assets', path='img/chambre.jpeg') }}" alt="Image 2"><br>
+                <span>Chambre</span>
+            </div>
+            <div class="image-room-div">
+                <img class="room-type-img" src="{{ url_for('assets', path='img/salle_de_bains.jpeg') }}" alt="Image 3"><br>
+                <span>Salle de bains</span>
+            </div>
+            <div class="image-room-div">
+                <img class="room-type-img" src="{{ url_for('assets', path='img/cuisine.jpeg') }}" alt="Image 1"><br>
+                <span>Cuisine</span>
+            </div>
+            <div class="image-room-div">
+                <img class="room-type-img" src="{{ url_for('assets', path='img/salle_a_manger.jpeg') }}" alt="Image 1"><br>
+                <span>Salle à manger</span>
+            </div>
+            <div class="image-room-div">
+                <img class="room-type-img" src="{{ url_for('assets', path='img/bureau.jpeg') }}" alt="Image 1"><br>
+                <span>Bureau à domicile</span>
+            </div>
+            <div class="image-room-div">
+                <img class="room-type-img" src="{{ url_for('assets', path='img/exterieur.jpeg') }}" alt="Image 1"><br>
+                <span>Extérieur Maison </span>
+            </div>
+            <div class="image-room-div">
+                <img class="room-type-img" src="{{ url_for('assets', path='img/toilette.jpeg') }}" alt="Image 1"><br>
+                <span>Toilette </span>
+            </div>
+            <div class="image-room-div">
+                <img class="room-type-img" src="{{ url_for('assets', path='img/dressing.webp') }}" alt="Image 1"><br>
+                <span>Dressing  </span>
+            </div>
+        </div>
+    </div>
+
+    <div id="style-type-div">
+        <span id="style-type-span">Style de pièce </span>
+
+        <div class="image-grid-style">
+            <div class="image-room-div">
+                <img class="style-type-img" src="{{ url_for('assets', path='img/moderne.jfif') }}" alt="Image 1"><br>
+                <span>Moderne</span>
+            </div>
+            <div class="image-room-div">
+                <img class="style-type-img" src="{{ url_for('assets', path='img/minimalist.jpeg') }}" alt="Image 2"><br>
+                <span>Minimaliste</span>
+            </div>
+            <div class="image-room-div">
+                <img class="style-type-img" src="{{ url_for('assets', path='img/contemporaine.jpeg') }}" alt="Image 3"><br>
+                <span>Contemporain</span>
+            </div>
+            <div class="image-room-div">
+                <img class="style-type-img" src="{{ url_for('assets', path='img/scandinave.jpeg') }}" alt="Image 1"><br>
+                <span>Scandinave</span>
+            </div>
+            <div class="image-room-div">
+                <img class="style-type-img" src="{{ url_for('assets', path='img/tropical.jpeg') }}" alt="Image 1"><br>
+                <span>Tropicale</span>
+            </div>
+            <div class="image-room-div">
+                <img class="style-type-img" src="{{ url_for('assets', path='img/japonaise.jpeg') }}" alt="Image 1"><br>
+                <span>Japonnais</span>
+            </div>
+            <div class="image-room-div">
+                <img class="style-type-img" src="{{ url_for('assets', path='img/francais.jpeg') }}" alt="Image 1"><br>
+                <span>Français</span>
+            </div>
+            <div class="image-room-div">
+                <img class="style-type-img" src="{{ url_for('assets', path='img/noel.jpeg') }}" alt="Image 1"><br>
+                <span>Noël</span>
+            </div>
+            <div class="image-room-div">
+                <img class="style-type-img" src="{{ url_for('assets', path='img/halloween.jpeg') }}" alt="Image 1"><br>
+                <span>Halloween</span>
+            </div>
+        </div>
+    </div>
+
+    <div id="color-type-div">
+        <span id="color-type-span">Votre couleur</span>
+        <div class="image-grid-style">
+
+            <div class="color-palette">
+                <!--<div class="col 0 no-color-box"></div>-->
+                <div class="col 1 color-box"></div>
+                <div class="col 2 color-box"></div>
+                <div class="col 3 color-box"></div>
+                <div class="col 4 color-box"></div>
+                <div class="col 5 color-box"></div>
+                <div class="col 6 color-box"></div>
+                <div class="col 7 color-box"></div>
+                <div class="col 8 color-box"></div>
+                <div class="col 9 color-box"></div>
+                <div class="col 10 color-box"></div>
+                <div class="col 11 color-box"></div>
+                <div class="col 12 color-box"></div>
+                <div class="col 13 color-box"></div>
+                <div class="col 14 color-box"></div>
+                <div class="col 15 color-box"></div>
+                <div class="col 16 color-box"></div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="element-send-form">
+        <button class="glow-on-hover" onclick="sendIMG()" type="button">Innovez !</button>
+    </div>
+
+
+    <!-- JavaScript pour afficher l'image sélectionnée -->
+    <script  src="{{ url_for('assets', path='dashboard.js') }}">
+        const colorBoxes = document.querySelectorAll('.color-box');
+        colorBoxes.forEach((box) => {
+          box.addEventListener('click', (event) => {
+            colorBoxes.forEach((box) => {
+              box.classList.remove('active');
+            });
+            event.target.classList.add('active');
+          });
+        });
+
+    </script>
+</body>
+</html>

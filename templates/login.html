@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>ORION.IA.</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{{ url_for('assets', path='login.css') }}">
+    <link rel="icon" type="image/x-icon" href="{{ url_for('assets', path='img/LOGO_ORION_-2.png') }}">
+</head>
+<body>
+
+    
+    <img id="logo" src="{{ url_for('assets', path='img/LOGO ORION .png') }}" alt="Logo" class="text-center" >
+    
+    <a href="/pricing" class="get-started-button">Commencer</a>
+
+    <div class="container" id="from-connexion">
+        <div class="row">
+            <div class="col-md-4 mx-auto form-style">
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="text-center title">S'identifier</h3>
+                    </div>
+                    <div class="card-body">
+                        {% if error %}
+                            <div class="alert alert-danger" role="alert">
+                                {{ error }}
+                            </div>
+                        {% endif %}
+                        {% if message %}
+                            <div class="alert alert-info" role="alert">
+                                {{ message }}
+                            </div>
+                        {% endif %}
+                        <form method="post" action="/login">
+                            <div class="mb-3">
+                                <label for="email" class="form-label">Email :</label>
+                                <input type="email" class="form-control" id="email" name="email" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="password" class="form-label">Mot de passe :</label>
+                                <input type="password" class="form-control" id="password" name="password" required>
+                            </div>
+                            <span id="forgot-password" >Mot de passe oublié </span>
+                            <button id="btn-connexion" type="submit" class="btn btn-primary d-block mx-auto">Se connecter  </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="form-password" class="container" style="display:none">
+        <div class="row">
+            <div class="col-md-4 mx-auto form-style">
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="text-center title">Mot de passe oublié</h3>
+                    </div>
+                    <div class="card-body">
+                        <form method="post" action="/forgot-password">
+                            <div class="mb-3">
+                                <label for="email" class="form-label">Email :</label>
+                                <input type="email" class="form-control" id="email" name="email" required>
+                            </div>
+                            <button type="submit" class="btn btn-primary d-block mx-auto" id="mail-reset">Réinitialiser mon mot de passe </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="social-links">
+        <div class="social-links">
+        <a href="https://www.facebook.com/orionaifr/" target="_blank">
+          <img src="{{ url_for('assets', path='img/facebook-icon.png') }}" alt="Facebook">
+        </a>
+        <a href="https://instagram.com/orion_ia?igshid=MzRlODBiNWFlZA==" target="_blank">
+          <img src="{{ url_for('assets', path='img/instagram-icon.png') }}" alt="Instagram">
+        </a>
+        <a href="https://www.tiktok.com/@orion_ai?lang=en" target="_blank">
+            <img src="{{ url_for('assets', path='img/tiktok-icon.png') }}" alt="Tiktok">
+        </a>
+        <a href="https://www.twitter.com/" target="_blank">
+          <img src="{{ url_for('assets', path='img/twitter-logo-2.png') }}" alt="Twitter">
+        </a>
+        <span>Orion &copy; Tous droits réservés</span>
+        </div>
+    </div>
+
+</body>
+<script  src="{{ url_for('assets', path='login.js') }}"></script>
+</html>
+
